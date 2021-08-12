@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+}
+
+header {
+    text-align: center;
+}
+
+#site-title {
+    margin: 30px;
+}
+
+#add-book {
+    width: 100px;
+    height: 50px;
+    font-size: 1em;
+}
