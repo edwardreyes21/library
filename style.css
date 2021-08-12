@@ -9,6 +9,7 @@ body {
     align-items: center;
     background: #254261;
     color: white;
+    font-family: 'Patrick Hand', cursive;
 }
 
 header {
@@ -24,19 +25,19 @@ header {
     width: 100px;
     height: 50px;
     font-size: 1em;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
 }
 
 #library {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-items: center;
     width: 100%;
 }
 
 .book {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 400px;
     margin: 25px;
     background: white;
 }
