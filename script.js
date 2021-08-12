@@ -1,4 +1,4 @@
-// Book object
+// Book object constructor
 function Book(author, title, pages) {
     this.author = author;
     this.title = title;
@@ -14,8 +14,18 @@ let books = [harry_potter];
 // When "Add Book" button is clicked, then open a window
 // that allows user to type in book name, etc.
 let add_book_button = document.querySelector("#add-book");
+let form_container = document.querySelector("#form-container");
+let container_visible = false;
 add_book_button.addEventListener("click", (Event) => {
-    
+    // Opens the container if it's not visible, otherwise closes it if already visible
+    if (!container_visible) {
+        form_container.style.visibility = "visible";
+        container_visible = true;
+    }
+    else {
+        form_container.style.visibility = "hidden";
+        container_visible = false;
+    }
 });
 
 // Creates library using all existing books inside the array

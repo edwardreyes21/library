@@ -12,6 +12,21 @@ body {
     font-family: 'Patrick Hand', cursive;
 }
 
+.center {
+    text-align: center;
+}
+
+#form-container {
+    background: white;
+    color: black;
+    border: 5px solid black;
+    width: 600px;
+    height: 500px;
+    top: 20%;
+    position: absolute;
+    visibility: hidden;
+}
+
 header {
     width: 100vw;
     text-align: center;
