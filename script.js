@@ -79,6 +79,12 @@ createLibrary = () => {
         book_pages.style.color = "black";
         new_container.appendChild(book_pages);
 
+        // Remove button
+        let remove_button = document.createElement("button");
+        remove_button.textContent = "Remove book";
+        remove_button.style.color = "black";
+        new_container.appendChild(remove_button);
+
         library.appendChild(new_container);
     }
 }
@@ -108,6 +114,12 @@ updateLibrary = (new_book) => {
     book_pages.textContent = new_book.pages;
     book_pages.style.color = "black";
     new_container.appendChild(book_pages);
+
+    // Remove button
+    let remove_button = document.createElement("button");
+    remove_button.textContent = "Remove book";
+    remove_button.style.color = "black";
+    new_container.appendChild(remove_button);
 
     library.appendChild(new_container);
 }
