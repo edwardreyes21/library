@@ -65,6 +65,11 @@ header {
 }
 
 .book {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 20px;
     width: 200px;
     height: 400px;
     margin: 25px;

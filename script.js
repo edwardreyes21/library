@@ -1,7 +1,6 @@
 // TO DO:
-// 1. Have "book" div show title, author, page count
-// 2. Remove book when clicking on it
-// 3. Allow local/cloud storage
+// 1. Remove book when clicking on it
+// 2. Allow local/cloud storage
 
 // Book object constructor
 function Book(author, title, pages) {
@@ -56,9 +55,30 @@ add_book_button.addEventListener("click", (Event) => {
 createLibrary = () => {
     let library = document.querySelector("#library");
 
+    // For each book in the book array, create a div representing that book
     for (let i = 0; i < books.length; i++) {
         let new_container = document.createElement("div");
         new_container.classList.add("book");
+
+        // For each new container, create sub-divs that represent details of the book
+        // Book title
+        let book_title = document.createElement("h1");
+        book_title.textContent = books[i].title;
+        book_title.style.color = "black";
+        new_container.appendChild(book_title);
+
+        // Book author
+        let book_author = document.createElement("h1");
+        book_author.textContent = books[i].author;
+        book_author.style.color = "black";
+        new_container.appendChild(book_author);
+
+        // Book pages
+        let book_pages = document.createElement("h1");
+        book_pages.textContent = books[i].pages;
+        book_pages.style.color = "black";
+        new_container.appendChild(book_pages);
+
         library.appendChild(new_container);
     }
 }
@@ -69,6 +89,26 @@ updateLibrary = (new_book) => {
 
     let new_container = document.createElement("div");
     new_container.classList.add("book");
+
+    // For each new container, create sub-divs that represent details of the book
+    // Book title
+    let book_title = document.createElement("h1");
+    book_title.textContent = new_book.title;
+    book_title.style.color = "black";
+    new_container.appendChild(book_title);
+
+    // Book author
+    let book_author = document.createElement("h1");
+    book_author.textContent = new_book.author;
+    book_author.style.color = "black";
+    new_container.appendChild(book_author);
+
+    // Book pages
+    let book_pages = document.createElement("h1");
+    book_pages.textContent = new_book.pages;
+    book_pages.style.color = "black";
+    new_container.appendChild(book_pages);
+
     library.appendChild(new_container);
 }
 
