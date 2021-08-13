@@ -16,17 +16,21 @@ body {
     text-align: center;
 }
 
+input:focus {
+    outline-width: 0;
+}
+
 #form-container {
     display: flex;
     flex-direction: column;
     background: white;
     color: black;
-    border: 5px solid black;
+    border: 20px solid black;
     width: 500px;
     height: 200px;
     top: 20%;
     position: absolute;
-    visibility: visible;
+    visibility: hidden;
 }
 
 #form-title, #form-author, #form-pages {

@@ -1,6 +1,5 @@
 // TO DO:
-// 1. Remove book when clicking on it
-// 2. Allow local/cloud storage
+// 1. Allow local/cloud storage
 
 // Book object constructor
 function Book(author, title, pages) {
@@ -11,10 +10,11 @@ function Book(author, title, pages) {
 
 // Default books for debugging
 let harry_potter = new Book("J.K Rowling", "Harry Potter", 500);
+let lord_of_the_rings = new Book("J.R.R Tolkien", "Lord of the Rings", 1000);
+let the_hobbit = new Book("J.R.R Tolkien", "The Hobbit", 1000);
 
 // Representing the books in our library
-let books = [harry_potter];
-
+let books = [harry_potter, lord_of_the_rings, the_hobbit];
 
 let add_book_button = document.querySelector("#add-book"); // Add book button
 let form_container = document.querySelector("#form-container"); // Form container div
@@ -51,6 +51,13 @@ add_book_button.addEventListener("click", (Event) => {
     }
 });
 
+// Will find a book in the books array by its name, then remove it
+removeBook = (book_name) => {
+    let index = books.findIndex(book => book.title == book_name);
+
+    books.splice(index, 1);
+}
+
 // Creates library using all existing books inside the array
 createLibrary = () => {
     let library = document.querySelector("#library");
@@ -65,63 +72,50 @@ createLibrary = () => {
         let book_title = document.createElement("h1");
         book_title.textContent = books[i].title;
         book_title.style.color = "black";
-        new_container.appendChild(book_title);
+       
 
         // Book author
         let book_author = document.createElement("h1");
         book_author.textContent = books[i].author;
         book_author.style.color = "black";
-        new_container.appendChild(book_author);
+        
 
         // Book pages
         let book_pages = document.createElement("h1");
         book_pages.textContent = books[i].pages;
         book_pages.style.color = "black";
-        new_container.appendChild(book_pages);
 
         // Remove button
         let remove_button = document.createElement("button");
         remove_button.textContent = "Remove book";
         remove_button.style.color = "black";
-        new_container.appendChild(remove_button);
+        remove_button.addEventListener("click", () => {
+            console.log("Deleting " + books[i].title);
+            removeBook(books[i].title)
+            updateLibrary();
+        });
 
+        // Add all of the content to the container div
+        new_container.appendChild(book_title);
+        new_container.appendChild(book_author);
+        new_container.appendChild(book_pages);
+        new_container.appendChild(remove_button);
+        
         library.appendChild(new_container);
     }
 }
 
-// Updates library whenever the user adds a new book
-updateLibrary = (new_book) => {
+// Updates library whenever the user adds/removes a new book
+updateLibrary = () => {
     let library = document.querySelector("#library");
 
-    let new_container = document.createElement("div");
-    new_container.classList.add("book");
+    // Clears all of the books from the screen
+    while (library.firstChild) {
+        library.removeChild(library.lastChild);
+    }
 
-    // For each new container, create sub-divs that represent details of the book
-    // Book title
-    let book_title = document.createElement("h1");
-    book_title.textContent = new_book.title;
-    book_title.style.color = "black";
-    new_container.appendChild(book_title);
-
-    // Book author
-    let book_author = document.createElement("h1");
-    book_author.textContent = new_book.author;
-    book_author.style.color = "black";
-    new_container.appendChild(book_author);
-
-    // Book pages
-    let book_pages = document.createElement("h1");
-    book_pages.textContent = new_book.pages;
-    book_pages.style.color = "black";
-    new_container.appendChild(book_pages);
-
-    // Remove button
-    let remove_button = document.createElement("button");
-    remove_button.textContent = "Remove book";
-    remove_button.style.color = "black";
-    new_container.appendChild(remove_button);
-
-    library.appendChild(new_container);
+    // Recreates the library using the updated books array
+    createLibrary();
 }
 
 // Every time a page loads, we create the library, which may
