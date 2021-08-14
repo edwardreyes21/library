@@ -14,7 +14,8 @@ let lord_of_the_rings = new Book("J.R.R Tolkien", "Lord of the Rings", 1000);
 let the_hobbit = new Book("J.R.R Tolkien", "The Hobbit", 1000);
 
 // Representing the books in our library
-let books = [harry_potter, lord_of_the_rings, the_hobbit];
+// harry_potter, lord_of_the_rings, the_hobbit
+let books = [];
 
 let add_book_button = document.querySelector("#add-book"); // Add book button
 let form_container = document.querySelector("#form-container"); // Form container div
@@ -30,11 +31,14 @@ form_submit.addEventListener("click", () => {
     form_container.style.visibility = "hidden";
     container_visible = false;
 
+    // Create a new book object using the form values inputted by user
     let new_book = new Book(form_title_content.value, form_author_content.value, form_pages_content.value);
 
+    // Add the new book to the books array
     books.push(new_book);
 
-    updateLibrary(new_book);
+    // Update the library to show the new book
+    updateLibrary();
 });
 
 // When "Add Book" button is clicked, then open a window
@@ -61,6 +65,16 @@ removeBook = (book_name) => {
 // Creates library using all existing books inside the array
 createLibrary = () => {
     let library = document.querySelector("#library");
+
+    // If no local storage for the books array exists, save existing array to local storage
+    if (!localStorage.getItem("books")) {
+        localStorage.setItem("books", JSON.stringify(books));
+    } 
+    // Else if local storage containing books has been found, use saved data instead
+    else {
+        let books_data = JSON.parse(localStorage.getItem("books"));
+        books = books_data;
+    }
 
     // For each book in the book array, create a div representing that book
     for (let i = 0; i < books.length; i++) {
@@ -113,6 +127,9 @@ updateLibrary = () => {
     while (library.firstChild) {
         library.removeChild(library.lastChild);
     }
+
+    // Updates local storage after adding/removing a book
+    localStorage.setItem("books", JSON.stringify(books));
 
     // Recreates the library using the updated books array
     createLibrary();
